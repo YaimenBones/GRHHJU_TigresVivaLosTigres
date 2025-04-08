@@ -21,8 +21,10 @@ public class Walking : MonoBehaviour
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.z = transform.position.z;
+            target.y = transform.position.y;
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
     }
 }
+
