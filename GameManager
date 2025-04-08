@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    //variables que tienen un lugar delimintado entor de la memoria, osea no se quita, asi que se queda casi casi para siempre
+    public static GameManager instance;
+
+    public int monedas;
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
