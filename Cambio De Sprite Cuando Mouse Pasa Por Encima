@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class iNTERACCION : MonoBehaviour
+{
+    private SpriteRenderer rend;
+    public Sprite sprite1;
+    public Sprite sprite2;
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        rend.sprite = sprite2;
+    }
+
+    private void OnMouseExit()
+    {
+        rend.sprite = sprite1;
+    }
+}
