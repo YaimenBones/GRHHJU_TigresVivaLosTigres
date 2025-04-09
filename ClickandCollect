@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class ClickandCollect : MonoBehaviour
+{
+    private bool inside;
+
+   private void OnMouseEnter()
+    {
+        inside = true;
+    }
+
+    private void OnMouseExit()
+    {
+
+        inside = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && inside)
+        {
+            GameManager.instance.monedas++;
+            Destroy(this.gameObject);
+        }
+    }
+
+}
