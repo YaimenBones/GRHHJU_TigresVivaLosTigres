@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class CollectItem : MonoBehaviour
+{
+    private bool inside;
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+    }
+
+    private void OnMouseExit()
+    {
+
+        inside = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && inside)
+        {
+            GameManager.instance.martillo = true;
+            Destroy(this.gameObject);
+        }
+    }
+}
