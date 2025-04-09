@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour
     //variables que tienen un lugar delimintado entor de la memoria, osea no se quita, asi que se queda casi casi para siempre
     public static GameManager instance;
 
-    public int monedas;
-
+    public int monedas = 0;
+    public bool martillo = false;
 
     private void Awake()
     {
