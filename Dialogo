@@ -1,0 +1,16 @@
+using UnityEngine;
+
+[System.Serializable]
+public class Dialogos 
+{
+    public string nombre1;
+    public string nombre2;
+    //si son varios hablando, hacemos tantos public strings mas el nombre por personaje
+
+    //3 es que tan grande s eve, 10 es cuantas lineas
+    [TextArea(3,10)]
+    public string texto;
+
+    public Sprite pers1;
+    public Sprite pers2;
+}
