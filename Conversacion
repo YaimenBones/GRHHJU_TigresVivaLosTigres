@@ -1,6 +1,56 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Conversacion : MonoBehaviour
 {
     public Dialogos[] dialogo;
+
+    public GameObject systemDialogos;
+
+    public Image pers1;
+    public Image pers2;
+
+    public TextMeshProUGUI textito;
+    public TextMeshProUGUI nom1;
+    public TextMeshProUGUI nom2;
+
+    public int linea = 0;
+    public bool inside;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            inside = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            inside = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && linea < dialogo.Length)
+        {
+            systemDialogos.SetActive(true);
+            pers1.sprite = dialogo[linea].pers1;
+            pers2.sprite = dialogo[linea].pers2;
+            textito.text = dialogo[linea].texto;
+            nom1.text = dialogo[linea].nombre1;
+            nom2.text = dialogo[linea].nombre2;
+
+            linea++;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && linea >= dialogo.Length)
+        {
+            linea = 0;
+            systemDialogos.SetActive(false);
+        }
+    }
 }
