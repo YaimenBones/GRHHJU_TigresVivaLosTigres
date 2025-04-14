@@ -1,0 +1,31 @@
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    //variables que tienen un lugar delimintado entor de la memoria, osea no se quita, asi que se queda casi casi para siempre
+    public static GameManager instance;
+
+    public bool Azucar = false;
+    public bool Llaves = false;
+    public bool Cuponera = false;
+    public bool Jersey = false;
+    public bool Postcard = false;
+    public bool Combinacion = false;
+    public bool Platano = false;
+    public bool Cascara = false;
+    public bool Tarjeta = false;
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
