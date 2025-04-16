@@ -3,6 +3,7 @@ using UnityEngine;
 public class ClickandCollect : MonoBehaviour
 {
     private bool inside;
+    public GameObject nombre;
 
    private void OnMouseEnter()
     {
@@ -19,7 +20,8 @@ public class ClickandCollect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && inside)
         {
-            GameManager.instance.monedas++;
+            GameManager.instance.monedas = true;
+            nombre.SetActive(true);
             Destroy(this.gameObject);
         }
     }
