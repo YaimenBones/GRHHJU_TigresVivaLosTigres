@@ -1,0 +1,29 @@
+using UnityEngine;
+
+public class Interaccion_SpriteCambia : MonoBehaviour
+{
+    private SpriteRenderer rend;
+    public Sprite sprite1;
+    public Sprite sprite2;
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        rend.sprite = sprite2;
+        if(GameManager.instance.Grabbed[0])
+        {
+            Debug.Log ("yippe");
+            GameManager.instance.Azucar = false;
+            Destroy(GameManager.instance.GrabObject);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        rend.sprite = sprite1;
+    }
+}
