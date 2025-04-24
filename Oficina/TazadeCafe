@@ -1,10 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Interaccion_SpriteCambia : MonoBehaviour
+public class TazadeCafe : MonoBehaviour
 {
     private SpriteRenderer rend;
     public Sprite sprite1;
     public Sprite sprite2;
+
+    public GuyomarHablando Script;
+
+
 
     private void Start()
     {
@@ -14,16 +19,20 @@ public class Interaccion_SpriteCambia : MonoBehaviour
     private void OnMouseEnter()
     {
         rend.sprite = sprite2;
+        rend.color = Color.green;
         if(GameManager.instance.Grabbed[0])
         {
             Debug.Log ("yippe");
             GameManager.instance.Azucar = false;
             Destroy(GameManager.instance.GrabObject);
+            Script.enabled = true;
+            
         }
     }
 
     private void OnMouseExit()
     {
         rend.sprite = sprite1;
+        rend.color = Color.white;
     }
 }
