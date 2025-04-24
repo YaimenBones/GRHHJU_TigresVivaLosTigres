@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public bool Cascara = false;
     public bool Tarjeta = false;
 
+    public bool[] Grabbed = new bool[9];
+
+    public GameObject GrabObject;
+
+
 
     private void Awake()
     {
