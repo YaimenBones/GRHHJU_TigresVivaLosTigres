@@ -9,6 +9,8 @@ public class TazadeCafe : MonoBehaviour
 
     public GuyomarHablando Script;
 
+   public GameObject Llaves;
+
 
 
     private void Start()
@@ -20,14 +22,16 @@ public class TazadeCafe : MonoBehaviour
     {
         rend.sprite = sprite2;
         rend.color = Color.green;
-        if(GameManager.instance.Grabbed[0])
+        if(GameManager.instance.Grabbed[0] && GameManager.instance.Azucar)
         {
             Debug.Log ("yippe");
             GameManager.instance.Azucar = false;
             Destroy(GameManager.instance.GrabObject);
             Script.enabled = true;
-            
+            Llaves.SetActive(true);
         }
+
+        
     }
 
     private void OnMouseExit()
