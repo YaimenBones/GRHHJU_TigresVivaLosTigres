@@ -1,0 +1,25 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class PuertaOficina : MonoBehaviour
+{
+
+
+    public BoxCollider2D Box;
+
+    public GuyomarHablando Script;
+   private void OnMouseEnter()
+    {
+       
+        if(GameManager.instance.Grabbed[1])
+        {
+            Debug.Log ("yippe");
+            GameManager.instance.Azucar = false;
+            Destroy(GameManager.instance.GrabObject);
+            Box.enabled = true;
+            Script.enabled = true;
+        }
+    }
+
+
+}
