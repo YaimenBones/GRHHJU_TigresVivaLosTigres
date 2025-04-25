@@ -7,30 +7,31 @@ public class Llavesnormales : MonoBehaviour
     public Sprite sprite1;
     public Sprite sprite2;
 
-   
+   public ClickGuyomar Script;
 
+   public GameObject LlavesInventario;
 
-    private void Start()
-    {
-        rend = GetComponent<SpriteRenderer>();
-    }
+   public bool inside;
+
 
     private void OnMouseEnter()
     {
-        rend.sprite = sprite2;
-        rend.color = Color.green;
-        if(GameManager.instance.Grabbed[1])
-        {
-            Debug.Log ("eso");
-            GameManager.instance.Llaves = false;
-           
-            Destroy(GameManager.instance.GrabObject);
-        }
+        inside = true;
     }
 
     private void OnMouseExit()
     {
-        rend.sprite = sprite1;
-        rend.color = Color.white;
+
+        inside = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && inside)
+        {
+            GameManager.instance.Llaves = true;
+            LlavesInventario.SetActive(true);
+            Script.enabled = true;
+        }
     }
 }
