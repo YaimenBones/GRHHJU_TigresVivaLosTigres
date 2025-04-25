@@ -1,0 +1,29 @@
+using UnityEngine;
+
+public class LlavesInventario : MonoBehaviour
+{
+    private bool inside;
+
+    public GameObject Llaves;
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+    }
+
+    private void OnMouseExit()
+    {
+
+        inside = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && inside)
+        {
+            GameManager.instance.Llaves = true;
+            Llaves.SetActive(true);
+            Destroy(this.gameObject);
+        }
+    }
+}
