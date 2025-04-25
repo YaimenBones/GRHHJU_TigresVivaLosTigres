@@ -1,29 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class LlavesInventario : MonoBehaviour
+public class LlavesInventario : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private bool inside;
 
-    public GameObject Llaves;
+  public int ID;
 
-    private void OnMouseEnter()
+  public BoxCollider2D Box;
+
+    Transform parentAfterDrag;
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        inside = true;
+       
+       parentAfterDrag = transform.parent;
+       transform.SetParent(transform.root);
+       transform.SetAsLastSibling();
     }
 
-    private void OnMouseExit()
+    public void OnDrag(PointerEventData eventData)
     {
-
-        inside = false;
+        
+        transform.position = Input.mousePosition;
+        GameManager.instance.GrabObject = this.gameObject;
+        GameManager.instance.Grabbed[ID] = true;
+        Box.enabled = true;
     }
 
-    void Update()
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonDown(0) && inside)
-        {
-            GameManager.instance.Llaves = true;
-            Llaves.SetActive(true);
-            Destroy(this.gameObject);
-        }
+      
+      transform.SetParent(parentAfterDrag);
+      GameManager.instance.Grabbed[ID] = false;
     }
+
+
 }
+
