@@ -20,25 +20,13 @@ public class GuyomarHablando : MonoBehaviour
     
 
     public int linea = 0;
-    public bool inside;
+   
 
     public bool eventDialogo;
 
-    private void OnMouseEnter()
-    {
-        if (GameManager.instance.Grabbed[0])
-        {
-            inside = true;
-        }
-    }
+    public bool active;
 
-    private void OnMouseExit()
-    {
-        if(GameManager.instance.Grabbed[0])
-        {
-            inside = false;
-        }
-    }
+    
 
     void Start()
     {
@@ -58,7 +46,7 @@ public class GuyomarHablando : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && linea < dialogo.Length)
+        if (Input.GetMouseButtonDown(0) && linea < dialogo.Length && active)
         {
             systemDialogos.SetActive(true);
             pers1.sprite = dialogo[linea].pers1;
@@ -74,6 +62,8 @@ public class GuyomarHablando : MonoBehaviour
         {
             linea = 0;
             systemDialogos.SetActive(false);
+            active = false;
+            Destroy(this.gameObject);
         }
     }
 }
