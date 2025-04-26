@@ -1,0 +1,54 @@
+using UnityEngine;
+
+public class ActualWalking : MonoBehaviour
+{
+    public float speed = 5f;
+    public Vector3 target;
+
+      Animator animator;
+
+      SpriteRenderer rend;
+
+      private bool isFacingRight;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+       target = transform.position;
+        animator = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            target.z = transform.position.z;
+            target.y = transform.position.y;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        Vector3 positionDifference = target - transform.position;
+
+        if(transform.position == target)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
+        }
+        if(positionDifference.x > 0)
+        {
+          rend.flipX = false;
+        }
+        else
+        {
+          rend.flipX = true;  
+        }
+
+    }
+}
