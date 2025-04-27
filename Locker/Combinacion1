@@ -1,0 +1,81 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Combinacion1 : MonoBehaviour
+{
+    public Dialogos[] dialogo;
+
+    public GameObject systemDialogos;
+
+    public Image pers1;
+
+    public Image fondo;
+
+    public Image TextBox;
+
+    
+
+    public TextMeshProUGUI textito;
+    public TextMeshProUGUI nom1;
+
+    public Image Item;
+    
+
+    public int linea = 0;
+
+    public Combinacion1 script;
+
+    
+   
+
+ 
+
+    private bool inside;
+
+   
+
+
+
+    void Start()
+    {
+
+            systemDialogos.SetActive(true);
+            pers1.sprite = dialogo[linea].pers1;
+            fondo.sprite = dialogo[linea].fondo;
+            textito.text = dialogo[linea].texto;
+            nom1.text = dialogo[linea].nombre1;
+            TextBox.sprite = dialogo[linea].TextBox;
+            Item.sprite = dialogo[linea].Item;
+
+            
+
+            linea++;
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && linea < dialogo.Length)
+        {
+            systemDialogos.SetActive(true);
+            pers1.sprite = dialogo[linea].pers1;
+            fondo.sprite = dialogo[linea].fondo;
+            textito.text = dialogo[linea].texto;
+            nom1.text = dialogo[linea].nombre1;
+            TextBox.sprite = dialogo[linea].TextBox;
+            Item.sprite = dialogo[linea].Item;
+     
+            
+
+            linea++;
+        }
+        else if (Input.GetMouseButtonDown(0) && linea >= dialogo.Length)
+        {
+            linea = 0;
+            systemDialogos.SetActive(false);
+            script.enabled = false;
+            Destroy(this.gameObject);
+        }
+    }
+}
