@@ -1,0 +1,47 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Imanes : MonoBehaviour
+{
+    private SpriteRenderer rend;
+    public Sprite sprite1;
+    public Sprite sprite2;
+
+    public Sprite sprite3;
+
+
+
+   public bool inside;
+
+   public GameObject Cuponera;
+
+
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+        rend.sprite = sprite2;
+        rend.color = Color.green;
+        if(GameManager.instance.Grabbed[2] && !GameManager.instance.Cuponera)
+        {
+            Debug.Log ("yippe");
+            GameManager.instance.Cuponera = true;
+            Destroy(GameManager.instance.GrabObject);
+            Cuponera.SetActive(true);
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    private void OnMouseExit()
+    {
+        inside = false;
+        rend.sprite = sprite1;
+        rend.color = Color.white;
+    }
+}
