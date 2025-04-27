@@ -1,0 +1,30 @@
+using UnityEditor;
+using UnityEngine;
+
+public class Combinacion : MonoBehaviour
+{
+
+  
+
+    public Combinacion1 Script;
+
+    public GameObject Codigo;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(GameManager.instance.Cuponera && GameManager.instance.Jersey && GameManager.instance.Postcard)
+        {
+            Script.enabled =true;
+            GameManager.instance.Combinacion = true;
+            Codigo.SetActive(true);
+        }
+        
+    }
+}
