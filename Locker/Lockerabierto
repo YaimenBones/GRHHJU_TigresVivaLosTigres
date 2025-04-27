@@ -1,0 +1,73 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Lockerabierto : MonoBehaviour
+{
+    public Dialogos[] dialogo;
+
+    public GameObject systemDialogos;
+
+    public Image pers1;
+
+    public Image fondo;
+
+    public Image TextBox;
+
+    public Image Item;
+    
+
+    public TextMeshProUGUI textito;
+    public TextMeshProUGUI nom1;
+    
+
+    public int linea = 0;
+   
+
+    public bool eventDialogo;
+
+    public bool active;
+
+    
+
+    void Start()
+    {
+        if(eventDialogo)
+        {
+            systemDialogos.SetActive(true);
+            pers1.sprite = dialogo[linea].pers1;
+            fondo.sprite = dialogo[linea].fondo;
+            textito.text = dialogo[linea].texto;
+            nom1.text = dialogo[linea].nombre1;
+            TextBox.sprite = dialogo[linea].TextBox;
+            Item.sprite = dialogo[linea].Item;
+            
+
+            linea++;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && linea < dialogo.Length && active)
+        {
+            systemDialogos.SetActive(true);
+            pers1.sprite = dialogo[linea].pers1;
+            fondo.sprite = dialogo[linea].fondo;
+            textito.text = dialogo[linea].texto;
+            nom1.text = dialogo[linea].nombre1;
+            TextBox.sprite = dialogo[linea].TextBox;
+            Item.sprite = dialogo[linea].Item;
+            
+
+            linea++;
+        }
+        else if (Input.GetMouseButtonDown(0) && linea >= dialogo.Length)
+        {
+            linea = 0;
+            systemDialogos.SetActive(false);
+            active = false;
+            Destroy(this.gameObject);
+        }
+    }
+}
