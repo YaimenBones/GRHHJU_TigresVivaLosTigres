@@ -1,0 +1,49 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Inventario_Jersey : MonoBehaviour
+{
+    private SpriteRenderer rend;
+    public Sprite sprite1;
+    public Sprite sprite2;
+
+    public ItemFound Script;
+
+   public GameObject Item;
+
+   public bool inside;
+
+
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+        rend.sprite = sprite2;
+        rend.color = Color.green;
+        
+    }
+
+    private void OnMouseExit()
+    {
+         inside = false;
+        rend.sprite = sprite1;
+        rend.color = Color.white;
+    }
+
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && inside)
+        {
+
+            Item.SetActive(true);
+            Script.enabled = true;
+        }
+    }
+}
+
