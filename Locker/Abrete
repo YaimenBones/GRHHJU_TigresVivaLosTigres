@@ -1,0 +1,37 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Abrete : MonoBehaviour
+{
+    private SpriteRenderer rend;
+
+    public Lockerabierto Script;
+
+   public GameObject Locker;
+
+
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        if(GameManager.instance.Grabbed[5] && GameManager.instance.Combinacion)
+        {
+            Debug.Log ("yippe");
+            GameManager.instance.Combinacion = false;
+            Destroy(GameManager.instance.GrabObject);
+            Script.enabled = true;
+            Locker.SetActive(true);
+        }
+
+        
+    }
+
+    private void OnMouseExit()
+    {
+
+    }
+}
