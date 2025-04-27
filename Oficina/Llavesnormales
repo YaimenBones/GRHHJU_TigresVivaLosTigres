@@ -13,16 +13,25 @@ public class Llavesnormales : MonoBehaviour
 
    public bool inside;
 
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
 
     private void OnMouseEnter()
     {
         inside = true;
+         rend.sprite = sprite2;
+        rend.color = Color.green;
     }
 
     private void OnMouseExit()
     {
 
         inside = false;
+        rend.sprite = sprite1;
+        rend.color = Color.white;
     }
 
     void Update()
