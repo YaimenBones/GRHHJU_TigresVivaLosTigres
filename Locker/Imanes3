@@ -1,0 +1,47 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Imanes3 : MonoBehaviour
+{
+    private SpriteRenderer rend;
+    public Sprite sprite1;
+    public Sprite sprite2;
+
+    public Sprite sprite3;
+
+
+
+   public bool inside;
+
+   public GameObject Postcard;
+
+
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+        rend.sprite = sprite2;
+        rend.color = Color.green;
+        if(GameManager.instance.Grabbed[4] && !GameManager.instance.Postcard)
+        {
+            Debug.Log ("yippe");
+            GameManager.instance.Postcard = true;
+            Destroy(GameManager.instance.GrabObject);
+            Postcard.SetActive(true);
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    private void OnMouseExit()
+    {
+        inside = false;
+        rend.sprite = sprite1;
+        rend.color = Color.white;
+    }
+}
