@@ -1,0 +1,68 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class LockerCerrado : MonoBehaviour
+{
+    private SpriteRenderer rend;
+    public Sprite sprite1;
+    public Sprite sprite2;
+
+    public ItemFound Script;
+
+    public Lockerabierto Abierto;
+
+
+   public bool inside;
+
+   public GameObject Locker;
+
+ 
+
+
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+        rend.sprite = sprite2;
+        rend.color = Color.green;
+         if(GameManager.instance.Grabbed[5] && GameManager.instance.Combinacion)
+        {
+            Debug.Log ("yippe");
+            GameManager.instance.Combinacion = false;
+            Destroy(GameManager.instance.GrabObject);
+            Abierto.enabled = true;
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    private void OnMouseExit()
+    {
+         inside = false;
+        rend.sprite = sprite1;
+        rend.color = Color.white;
+    }
+
+    void Update()
+    {
+         if (Input.GetMouseButtonDown(0) && inside && !GameManager.instance.Combinacion)
+        {
+            Script.enabled = true;
+        }
+
+        if (GameManager.instance.Grabbed[5] && GameManager.instance.Combinacion)
+        {
+             Debug.Log ("yippe");
+            GameManager.instance.Combinacion = false;
+            Destroy(GameManager.instance.GrabObject);
+            Abierto.enabled = true;
+            Locker.SetActive(true);
+        }
+    }
+
+}
