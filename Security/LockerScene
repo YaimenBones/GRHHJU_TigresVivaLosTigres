@@ -1,0 +1,32 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LockerScene : MonoBehaviour
+{
+    public string Lockers;
+
+    private bool inside;
+
+
+
+    private void OnMouseEnter()
+    {
+        inside = true;
+    }
+
+    private void OnMouseExit()
+    {
+
+        inside = false;
+    }
+
+
+    void Update()
+    {
+         if (Input.GetMouseButtonDown(0) && inside)
+        {
+            SceneManager.LoadScene(Lockers);
+        }
+    }    
+    
+}
